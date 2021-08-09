@@ -94,7 +94,7 @@ class FatApplication {
 		// No input from user.
 		if(companyName.equals("")) {
 			throw new InputMismatchException("Customers company name is not inputtted.");
-        }
+        	}
 		
 		// Display message for user to enter the customer company name. 
 		System.out.print("Please input customers address: ");
@@ -102,7 +102,7 @@ class FatApplication {
 		// No input from user.
 		if(companyName.equals("")) {
 			throw new InputMismatchException("Customers address is not inputtted.");
-        }
+        	}
 		
 		// Display message for user to enter the customer company name. 
 		System.out.print("Please input customers country: ");
@@ -110,7 +110,7 @@ class FatApplication {
 		// No input from user.
 		if(companyName.equals("")) {
 			throw new InputMismatchException("Customers country is not inputtted.");
-        }
+        	}
 		
 		// Create customer object of the Customer class to store the information of the Customer.
 		Customer customer = new Customer(companyName, address, country);
@@ -133,7 +133,7 @@ class FatApplication {
 					// No input from user.
 					if(companyName.equals("")) {
 						throw new InputMismatchException("Customers company name is not inputtted.");
-			        }
+			        	}
 					break;
 				case 2:
 					// Display message for user to enter the customer company name. 
@@ -142,7 +142,7 @@ class FatApplication {
 					// No input from user.
 					if(companyName.equals("")) {
 						throw new InputMismatchException("Customers address is not inputtted.");
-			        }
+			        	}
 					break;
 				case 3:
 					// Display message for user to enter the customer company name. 
@@ -151,13 +151,12 @@ class FatApplication {
 					// No input from user.
 					if(companyName.equals("")) {
 						throw new InputMismatchException("Customers country is not inputtted.");
-			        }
+			        	}
 					break;
 				case 4:
 					System.exit(0);
 			}
 		}
-		
 		// Close Scanner
 		input.close();
 	}
