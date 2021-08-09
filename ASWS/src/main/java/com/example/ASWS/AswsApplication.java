@@ -1,20 +1,28 @@
-package com.example.ASWS;
-
+package com.example.demo;
 import org.springframework.boot.SpringApplication;
 import org.springframework.boot.autoconfigure.SpringBootApplication;
 
+import java.util.InputMismatchException;
+import java.util.Objects;
+import java.util.Scanner;
+
+import javax.persistence.Entity;
+import javax.persistence.GeneratedValue;
+import javax.persistence.Id;
+
 // Customer Class
+@Entity
 class Customer {
 	// Attributes of class fields (Parameters) are declared.
 	private String companyName;
-	private char address;
+	private String address;
 	private String country;
   
 	// Default Constructor
 	Customer() {}
   
 	// Parameterized Constructor
-	Customer(String companyName, char address, String country) {
+	Customer(String companyName, String address, String country) {
 		this.companyName = companyName;
 		this.address = address;
 		this.country = country;
@@ -26,7 +34,7 @@ class Customer {
 		return this.companyName;
 	}
   
-	public char getAddress() {
+	public String getAddress() {
 		return this.address;
 	}
   
@@ -40,76 +48,117 @@ class Customer {
 		this.companyName = companyName;
 	}
   
-	public void setAddress(char address) {
+	public void setAddress(String address) {
 		this.address = address;
 	}
   
 	public void setCountry(String country) {
 	 	this.country = country;
 	}
-}
-  
-// Contact Class
-class Contact {
-	// Attributes of class fields (Parameters) are declared.
-	private String name;
-	private int phone;
-	private char email;
-	private String position;
-	  
-	// Default Constructor
-	Contact() {}
-	  
-	// Parameterized Constructor
-	Contact(String name, int phone, char email, String position) {
-		this.name = name;
-		this.phone = phone;
-		this.email = email;
-		this.position = position;
-	}
-	  
-	// Accessor Methods
 	
-	public String getName() {
-		return this.name;
-	}
-	  
-	public int getPhone() {
-		return this.phone;
-	}
-	  
-	public char getEmail() {
-		return this.email;
-	}
-	  
-	public String getPosition() {
-		return this.position;
-	}
-	  
-	// Mutator Methods
-	  
-	public void setName(String name) {
-		this.name = name;
-	}
-	  
-	public void setPhone(int phone) {
-		this.phone = phone;
-	}
-	  
-	public void setEmail(char email) {
-		this.email = email;
-	}
+    // Override Methods
 	
-	public void setPosition(String position) {
-		this.position = position;
-	}
+    @Override
+    public java.lang.String toString() {
+        return "Customer{" +
+                "company name=" + companyName +
+                ", address='" + address + '\'' +
+                ", country=" + country +
+                '}';
+    }
+    
+    @Override
+    public int hashCode() {
+        return java.util.Objects.hash(super.hashCode(), companyName, address, country);
+    }
 }
 
 @SpringBootApplication
-public class AswsApplication {
-
+class FatApplication {
 	public static void main(String[] args) {
-		SpringApplication.run(AswsApplication.class, args);
+		SpringApplication.run(FatApplication.class, args);
+		
+		// Import New Scanner Object.
+		Scanner input = new Scanner(System.in);
+		
+		// Declaring attributes for storing the customer. 
+		String companyName, address, country;
+		
+		// Create Customers
+		// Display message asking to enter the personal details of the customer.
+		System.out.println("\nEnter the following details to create customer.");
+		
+		// Display message for user to enter the customer company name. 
+		System.out.print("Please input customers company name: ");
+		companyName = input.nextLine();
+		// No input from user.
+		if(companyName.equals("")) {
+			throw new InputMismatchException("Customers company name is not inputtted.");
+        }
+		
+		// Display message for user to enter the customer company name. 
+		System.out.print("Please input customers address: ");
+		address = input.nextLine();
+		// No input from user.
+		if(companyName.equals("")) {
+			throw new InputMismatchException("Customers address is not inputtted.");
+        }
+		
+		// Display message for user to enter the customer company name. 
+		System.out.print("Please input customers country: ");
+		country = input.nextLine();
+		// No input from user.
+		if(companyName.equals("")) {
+			throw new InputMismatchException("Customers country is not inputtted.");
+        }
+		
+		// Create customer object of the Customer class to store the information of the Customer.
+		Customer customer = new Customer(companyName, address, country);
+		
+		// Update Customer
+		
+		// Create boolean object to see if they would like to update the customers details.
+		boolean updateCustomer = false;
+		
+		// Display message asking if they would like to update the personal details of the customer.
+		System.out.println("\nWould you like to update the personal details of the customer?");
+		if (updateCustomer == true) {
+			System.out.println("\nSelect one of the following fields to update (Select 4 to exit when completed): " + "\n"
+					          + "1. Company Name" + "\n" + "2. Address" + "\n" + "3. Country" + "\n" + "4. Exit");
+			int fieldSelected = input.nextInt();
+			switch(fieldSelected) {
+				case 1:
+					System.out.print("Please input customers company name: ");
+					companyName = input.nextLine();
+					// No input from user.
+					if(companyName.equals("")) {
+						throw new InputMismatchException("Customers company name is not inputtted.");
+			        }
+					break;
+				case 2:
+					// Display message for user to enter the customer company name. 
+					System.out.print("Please input customers address: ");
+					address = input.nextLine();
+					// No input from user.
+					if(companyName.equals("")) {
+						throw new InputMismatchException("Customers address is not inputtted.");
+			        }
+					break;
+				case 3:
+					// Display message for user to enter the customer company name. 
+					System.out.print("Please input customers country: ");
+					country = input.nextLine();
+					// No input from user.
+					if(companyName.equals("")) {
+						throw new InputMismatchException("Customers country is not inputtted.");
+			        }
+					break;
+				case 4:
+					System.exit(0);
+			}
+		}
+		
+		// Close Scanner
+		input.close();
 	}
-
 }
