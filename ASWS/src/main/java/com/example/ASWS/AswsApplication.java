@@ -117,7 +117,7 @@ class FatApplication {
 		
 		// Update Customer
 		
-		// Create boolean object to see if they would like to update the customers details.
+		// Create boolean object to see if they would like to update the customers details (set false as default).
 		boolean updateCustomer = false;
 		
 		// Display message asking if they would like to update the personal details of the customer.
